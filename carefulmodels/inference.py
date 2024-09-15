@@ -1,0 +1,64 @@
+import vapoursynth as vs
+import vsmlrt
+import os
+
+core = vs.core
+
+
+def get_model(path):
+  return os.path.join(os.path.dirname(__file__), "models", path)
+
+
+def inf_rgb_mask(clip, mask, model, backend):
+  if clip.format.color_family != vs.YUV and clip.format.color_family != vs.RGB:
+    raise Exception("clip must be YUV or RGB")
+
+  if clip.format.color_family == vs.YUV:
+    clip = core.resize.Bicubic(clip, format=vs.RGBH, matrix_in_s="709")
+
+  inf = vsmlrt.inference([clip, mask], model, backend=backend)
+
+  if clip.format.color_family == vs.YUV:
+    fmt = clip.format.replace(bits_per_sample=16,
+                              subsampling_w=0,
+                              subsampling_h=0)
+    inf = core.resize.Bicubic(inf, format=fmt, matrix_s="709")
+
+  return inf
+
+
+def inf_gray_mask(clip, mask, model, backend):
+  if clip.format.color_family != vs.GRAY:
+    raise Exception("clip must be GRAY")
+
+  clip = core.resize.Bicubic(clip, format=vs.GRAYH)
+
+  clip = vsmlrt.inference([clip, mask], model, backend=backend)
+
+  clip = core.resize.Bicubic(clip, format=vs.GRAY16)
+
+  return clip
+
+
+def inf_gray_3_mask(clip, mask, model, backend, planes=[0, 1, 2]):
+  if clip.format.color_family != vs.YUV and clip.format.color_family != vs.RGB:
+    raise Exception("clip must be YUV or RGB")
+
+  split = core.std.SplitPlanes(clip)
+
+  for p in planes:
+    split[p] = inf_gray_mask(clip[p], mask, model, backend)
+
+  for p in range(3):
+    if p not in planes:
+      split[p] = core.resize.Point(split[p], format=vs.GRAY16)
+
+  clip = core.std.ShufflePlanes(split, [0, 0, 0], clip.format.color_family)
+  return clip
+
+
+def inf_gray_y_mask(clip, mask, model, backend):
+  if clip.format.color_family == vs.GRAY:
+    return inf_gray_mask(clip, mask, model, backend)
+
+  return inf_gray_3_mask(clip, mask, model, backend, planes=[0])
