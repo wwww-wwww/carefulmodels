@@ -3,7 +3,7 @@
 ## banding
 
 ```python
-carefulmodels.deband(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.banding(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
 ```
 
 ## h264
