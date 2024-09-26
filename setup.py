@@ -20,8 +20,11 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/wwww-wwww/carefulmodels",
     install_requires=requirements,
-    python_requires='>=3.11',
+    python_requires=">=3.11",
     packages=setuptools.find_packages(),
+    package_data={
+        package_name: ["models/*.onnx"],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
