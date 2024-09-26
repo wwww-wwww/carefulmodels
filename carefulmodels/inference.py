@@ -10,18 +10,19 @@ def get_model(path):
 
 
 def inf_rgb_mask(clip, mask, model, backend):
-  if clip.format.color_family != vs.YUV and clip.format.color_family != vs.RGB:
+  input_fmt = clip.format
+  if input_fmt.color_family != vs.YUV and input_fmt.color_family != vs.RGB:
     raise Exception("clip must be YUV or RGB")
 
-  if clip.format.color_family == vs.YUV:
+  if input_fmt.color_family == vs.YUV:
     clip = core.resize.Bicubic(clip, format=vs.RGBH, matrix_in_s="709")
 
   inf = vsmlrt.inference([clip, mask], model, backend=backend)
 
-  if clip.format.color_family == vs.YUV:
-    fmt = clip.format.replace(bits_per_sample=16,
-                              subsampling_w=0,
-                              subsampling_h=0)
+  if input_fmt.color_family == vs.YUV:
+    fmt = input_fmt.replace(bits_per_sample=16,
+                            subsampling_w=0,
+                            subsampling_h=0)
     inf = core.resize.Bicubic(inf, format=fmt, matrix_s="709")
 
   return inf
