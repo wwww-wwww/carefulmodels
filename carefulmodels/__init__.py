@@ -1,2 +1,2 @@
 from . import inference
-from .models import banding, h264, scale, sharp
+from .models import banding, h264, scale, sharp, mpeg2

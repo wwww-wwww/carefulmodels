@@ -23,3 +23,9 @@ carefulmodels.scale(clip: VideoNode, strength: [float, VideoNode], backend: vsml
 ```python
 carefulmodels.sharp(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
 ```
+
+## mpeg2
+
+```python
+carefulmodels.mpeg2(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+```
