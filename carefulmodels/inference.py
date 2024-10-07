@@ -54,7 +54,7 @@ def inf_gray_3_mask(clip, mask, model, backend, planes=[0, 1, 2]):
   split = core.std.SplitPlanes(clip)
 
   for p in planes:
-    split[p] = inf_gray_mask(clip[p], mask, model, backend)
+    split[p] = inf_gray_mask(split[p], mask, model, backend)
 
   for p in range(3):
     if p not in planes:
