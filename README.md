@@ -26,6 +26,14 @@ Luma only
 carefulmodels.noise(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
 ```
 
+## noiseuv
+
+Chroma only
+
+```python
+carefulmodels.noiseuv(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+```
+
 ## scale
 
 ```python

@@ -14,7 +14,7 @@ def inf_rgb_mask(clip, mask, model, backend=vsmlrt.Backend.TRT(fp16=True)):
   if input_fmt.color_family != vs.YUV and input_fmt.color_family != vs.RGB:
     raise Exception("clip must be YUV or RGB")
 
-  if type(mask) != vs.VideoNode:
+  if not isinstance(mask, vs.VideoNode):
     mask = core.std.BlankClip(clip, format=vs.GRAYH, color=mask)
 
   if input_fmt.color_family == vs.YUV:
@@ -35,7 +35,7 @@ def inf_gray_mask(clip, mask, model, backend=vsmlrt.Backend.TRT(fp16=True)):
   if clip.format.color_family != vs.GRAY:
     raise Exception("clip must be GRAY")
 
-  if type(mask) != vs.VideoNode:
+  if not isinstance(mask, vs.VideoNode):
     mask = core.std.BlankClip(clip, format=vs.GRAYH, color=mask)
 
   clip = core.resize.Bicubic(clip, format=vs.GRAYH)
