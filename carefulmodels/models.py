@@ -38,11 +38,11 @@ def noiseuv(clip: vs.VideoNode,
 
   clip = core.std.ShufflePlanes(planes, [0, 0, 0], vs.RGB)
 
-  clip = inf_rgb_mask(clip, mask, get_model("w-noiseuv-fp16.onnx"), backend)
+  clip = inf_rgb_mask(clip, mask, get_model("w-noiseuv2-fp16.onnx"), backend)
 
   clip = core.resize.Point(clip, format=vs.RGB48)
   clip = core.std.SplitPlanes(clip)
-  return core.std.ShufflePlanes([y, clip[1], clip[0]], [0, 0, 0], vs.YUV)
+  return core.std.ShufflePlanes([y, clip[1], clip[2]], [0, 0, 0], vs.YUV)
 
 
 def scale(clip: vs.VideoNode,
