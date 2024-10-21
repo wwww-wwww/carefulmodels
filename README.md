@@ -3,19 +3,19 @@
 ## banding
 
 ```python
-carefulmodels.banding(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.banding(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
 ## h264
 
 ```python
-carefulmodels.h264(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.h264(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
 ## mpeg2
 
 ```python
-carefulmodels.mpeg2(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.mpeg2(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
 ## noise
@@ -23,7 +23,7 @@ carefulmodels.mpeg2(clip: VideoNode, strength: [float, VideoNode], backend: vsml
 Luma only
 
 ```python
-carefulmodels.noise(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.noise(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
 ## noiseuv
@@ -31,17 +31,17 @@ carefulmodels.noise(clip: VideoNode, strength: [float, VideoNode], backend: vsml
 Chroma only
 
 ```python
-carefulmodels.noiseuv(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.noiseuv(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
 ## scale
 
 ```python
-carefulmodels.scale(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.scale(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
 ## sharp
 
 ```python
-carefulmodels.sharp(clip: VideoNode, strength: [float, VideoNode], backend: vsmlrt.Backend)
+carefulmodels.sharp(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
