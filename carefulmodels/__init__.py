@@ -4,5 +4,5 @@ from .models import h264
 from .models import mpeg2
 from .models import scale
 from .models import sharp
-from .models import noise
+from .models import noisey
 from .models import noiseuv

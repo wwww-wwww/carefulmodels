@@ -18,12 +18,12 @@ carefulmodels.h264(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: 
 carefulmodels.mpeg2(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
-## noise
+## noisey
 
 Luma only
 
 ```python
-carefulmodels.noise(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
+carefulmodels.noisey(clip: vs.VideoNode, strength: float | vs.VideoNode, backend: vsmlrt.Backend)
 ```
 
 ## noiseuv
